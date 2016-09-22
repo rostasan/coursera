@@ -12,27 +12,20 @@
 
         $scope.tooMuch = function(){
 
-          var str = $scope.lunchItem;
-          var split = str.split (',', 10);
-                    console.log(str.length);
-          if(str.length > 4){
-            $scope.message = "Enjoy";
-          }else {
-            $scope.message = "Too Much"
-
-          };
-
-
-
+                var str = $scope.lunchItem;
+                if(str == null){
+                  $scope.message = "Please enter a lunch item.";
+                }else {
+                      var splits = str.split(',');
+                                console.log(splits.length);
+                      if(splits.length < 4){
+                        $scope.message = "Enjoy";
+                      }else {
+                        $scope.message = "Too Much";
+                      }
+                }
         }
-        var myString = 'Hello World. How are you doing?';
-var splits = myString.split(' ', 3);
-console.log(splits);
-console.log(splits.length);
-
-
     }
-
 
 
 })();
