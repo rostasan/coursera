@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Shopping List Check Off</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <style>
+      .emptyMessage {
+        font-weight: bold;
+        color: red;
+        font-size: 1.2em;
+      }
+      li {
+        margin-bottom: 7px;
+        font-size: 1.2em;
+      }
+      li > button {
+        margin-left: 6px;
+      }
+      button > span {
+        color: green;
+      }
+    </style>
+  </head>
+<body ng-app="ShoppingListApp">
+  <div class="container">
+  <h1>Shopping List Check Off</h1>
+
+  <div class="row">
+
+    <!-- To Buy List -->
+    <div class="col-md-6" ng-controller="ShoppingListViewController as showList">
+     <h2>To Buy:</h2>
+     <!-- <input type="text" name="items" ng-model="itemName"> -->
+     <ul ng-repeat="item in showList.items" ng-hide="item.status">
+       <li>Buy {{item.quantity}} {{item.name}}.<button type="button" name="Purchase" ng-click="item.status = true">Bought</button></li>
+     </ul>
+
+     <div class="emptyMessage"  ng-hide="showList.items">Everything is bought!</div>
+    </div>
+
+    <!-- Already Bought List -->
+    <div class="col-md-6" ng-controller="ShoppingListViewController as showList">
+       <h2>Already Bought:</h2>
+
+       <ul ng-repeat="item in showList.items" ng-show="item.status">
+         <li>Bought {{item.quantity}} {{item.name}}.<button type="button" name="Purchase" ng-click="item.status = false">Return</button></li>
+       </ul>
+
+       <div class="emptyMessage" ng-show="items.status">Nothing bought yet.</div>
+       </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript" src="app.js">    </script>
+</body>
+</html>
